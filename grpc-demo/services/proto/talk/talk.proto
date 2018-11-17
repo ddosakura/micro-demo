@@ -1,0 +1,35 @@
+// github.com/ddosakura/go-micro-demo/grpc-demo/services/proto/talk/talk.proto
+
+syntax = "proto3";
+package go.micro.srv.talk;
+
+// 微服务
+service TaklkingService {
+    rpc CreateTalk (Topic) returns (Response) {
+    }
+    rpc GetTalk (GetRequest) returns (Response) {
+    }
+}
+
+// 主题
+message Topic {
+    string id = 1;                      // 编号
+    string description = 2;             // 描述
+    repeated Msg containers = 3;        // 信息
+}
+
+// 信息
+message Msg {
+    string id = 1;                      // 编号
+    string data = 2;                    // 内容
+}
+
+// 结果
+message Response {
+    bool created = 1;		        	// 成功创建
+    Topic topic = 2;                    // 新主题
+    repeated Topic topics = 3;          // 所有主题
+}
+
+message GetRequest {
+}
