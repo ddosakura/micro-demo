@@ -1,28 +1,9 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const { UserServiceClient } = require('./proto/user/user_grpc_web_pb');
-const { UserRequest } = require('./proto/user/user_pb.js');
-
-function initClient() {
-
-  const client = new UserServiceClient('localhost:50001');
-
-  const request = new UserRequest();
-  request.setMessage('Hello World!');
-
-  const metadata = { 'custom-header-1': 'value1' };
-
-  client.echo(request, metadata, (err, response) => {
-    // ...
-  });
-}
-
 function App() {
   const [count, setCount] = useState(0);
-
-  initClient()
 
   return (
     <div className="App">

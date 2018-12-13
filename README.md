@@ -46,12 +46,52 @@ go get -u -v github.com/micro/protobuf/{proto,protoc-gen-go}
 go get -u -v github.com/micro/protoc-gen-micro
 # micro工具包(可选项)
 go get -v github.com/micro/micro
+# 之前好像没装 `micro` 命令行工具
+go get github.com/micro/micro
+# 官方
+go get -u github.com/micro/micro
+docker pull microhq/micro
 ```
 
 ```bash
 # consul 容器（go-micro 默认服务发现）
 docker pull consul:1.3.0
 ```
+
+## 数据库相关
+
+```bash
+# MongoDB
+go get gopkg.in/mgo.v2
+
+# Redis
+go get github.com/gomodule/redigo/redis
+# github.com/garyburd/redigo 是官方推荐，但现已转移至 github.com/gomodule/redigo
+
+# MySQL
+go get github.com/jinzhu/gorm   # golang orm 框架
+## "github.com/jinzhu/gorm"
+## _ "github.com/jinzhu/gorm/dialects/mysql"
+
+# PostgreSQL
+go get github.com/jinzhu/gorm   # golang orm 框架
+## "github.com/jinzhu/gorm"
+## _ "github.com/jinzhu/gorm/dialects/postgres"
+# 或
+go get github.com/lib/pq
+# 参见 https://blog.csdn.net/wangshubo1989/article/details/77478838?locationNum=3&fps=1
+```
+
+## 服务发现
+
+```Makefile
+run:
+	docker run -p 50051:50051 \
+	 -e MICRO_SERVER_ADDRESS=:50051 \
+	 -e MICRO_REGISTRY=mdns \
+	 consignment-service
+```
+-e 选项用于设置镜像中的环境变量，其中 MICRO_REGISTRY=mdns 会使 go-micro 在本地使用 mdns 多播作为服务发现的中间层。在生产环境一般会使用 Consul 或 Etcd 代替 mdns 做服务发现，在本地开发先一切从简。
 
 ## 参考
 

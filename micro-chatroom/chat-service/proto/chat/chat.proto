@@ -1,0 +1,23 @@
+// github.com/ddosakura/go-micro-demo/grpc-chatroom/proto/chat/chat.proto
+
+syntax = "proto3";
+package go.micro.srv.chat;
+
+service ChatService {
+    rpc Send (Request) returns (Response);
+    rpc Listen (Request) returns (stream Message);
+}
+
+message Request {
+    string token = 1;
+    string msg = 2;
+}
+
+message Message {
+    string nickname = 1;
+    string data = 2;
+}
+
+message Response {
+
+}

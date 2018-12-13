@@ -1,0 +1,12 @@
+.form {
+  max-width: 300px;
+  margin: 100px auto;
+}
+
+.forgot {
+  float: right;
+}
+
+.button {
+  width: 100%;
+}

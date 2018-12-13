@@ -1,0 +1,27 @@
+// github.com/ddosakura/go-micro-demo/micro-chatroom/user-service/proto/user.proto
+
+syntax = "proto3";
+package go.micro.srv.user;
+
+service UserService {
+    rpc Register(User) returns (Response) {}
+    rpc Login(User) returns (Response) {}
+    rpc GetAll(Request) returns (Response) {}
+}
+
+message Request {
+
+}
+
+message Response {
+    int64 code = 1;
+    repeated string users = 2;
+    string token = 3;
+}
+
+message User {
+    string user_id = 1;
+    string username = 2;
+    string password = 3;
+    string nickname = 4;
+}
